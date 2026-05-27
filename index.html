@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biostat & BioDiscovery LLC - Expert Analytics & Bioinformatics</title>
+    <title>Biostat & BioDiscovery LLC - Expert Analytics & Biotools</title>
     <style>
         :root {
-            --primary-dark: #020617;   /* Deepest midnight blue for header */
-            --bg-main: #ffffff;        /* Crisp pure white canvas background */
-            --card-bg: #1e293b;        /* Matte charcoal background for cards */
+            --primary-dark: #020617;   /* Deepest midnight blue */
+            --bg-main: #ffffff;        /* Pure white background for content sections */
+            --card-bg: #0f172a;        /* Elegant dark charcoal for content cards */
             --accent-cyan: #0ea5e9;    /* Vibrant technology cyan */
-            --text-light: #f8fafc;     /* Crisp white for readable headers inside cards */
-            --text-muted: #94a3b8;     /* Light silver-grey for details */
-            --border-color: #334155;   /* Subtle outline dividers inside cards */
+            --text-light: #f8fafc;     /* Light text inside cards */
+            --text-muted: #64748b;     /* Slate grey for secondary text */
+            --border-color: #1e293b;   /* Subtle modern dividers */
         }
 
         html {
@@ -26,33 +26,34 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
 
+        /* --- Full Width Premium Sticky Header --- */
         header {
-            background-color: var(--primary-dark);
+            background-color: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: white;
-            padding: 1.2rem 2rem;
+            padding: 1.2rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .logo {
             font-weight: 700;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             letter-spacing: -0.02em;
             color: #ffffff;
+            text-decoration: none;
         }
 
         .logo span {
@@ -62,13 +63,14 @@
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             margin: 0;
             padding: 0;
+            align-items: center;
         }
 
         nav a {
-            color: var(--text-muted);
+            color: #94a3b8;
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
@@ -79,152 +81,206 @@
             color: var(--accent-cyan);
         }
 
-        .main-content {
-            flex: 1;
-            margin-top: 5rem; 
+        /* Standalone styled tab button for the asset registry portal */
+        .nav-db-btn {
+            background-color: transparent;
+            color: var(--accent-cyan);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            border: 1px solid rgba(14, 165, 233, 0.4);
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-db-btn:hover {
+            background-color: var(--accent-cyan);
+            color: white;
+            border-color: var(--accent-cyan);
         }
 
+        /* --- IMMERSIVE FULL-SCREEN FRONT PAGE LANDING --- */
+        .hero-fullscreen {
+            height: 100vh;
+            width: 100%;
+            background-color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            color: var(--accent-cyan);
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: #cbd5e1;
+            max-width: 750px;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.6;
+        }
+
+        .hero-btn {
+            background-color: var(--accent-cyan);
+            color: white;
+            padding: 0.8rem 2.2rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+        }
+
+        .hero-btn:hover {
+            background-color: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        /* --- CONTENT SECTIONS (TUCKED BELOW THE FOLD) --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 4rem 1.5rem;
+            padding: 6rem 1.5rem;
         }
 
-        .grid {
+        .section-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin: 0 0 1rem 0;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header p {
+            color: #475569;
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 2.5rem;
         }
 
-        .card {
-            background: var(--card-bg);
+        .service-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
+            padding: 3rem 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        h2 {
-            margin-top: 0;
-            font-size: 1.5rem;
-            color: #ffffff;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary-dark);
+            margin: 0 0 1rem 0;
             font-weight: 700;
         }
 
-        .service-list {
-            list-style: none;
-            padding: 0;
+        .service-card p {
+            color: #475569;
+            font-size: 0.98rem;
             margin: 0;
+            line-height: 1.6;
         }
 
-        .service-item {
-            padding: 1.2rem 1rem;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
-            margin-bottom: 0.25rem;
-        }
-
-        .service-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .service-title {
-            font-weight: 600;
-            color: var(--accent-cyan);
-            margin-bottom: 0.4rem;
-            font-size: 1.1rem;
-        }
-
-        .database-title-link {
-            text-decoration: none;
-            color: var(--accent-cyan);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-
-        .database-title-link:hover {
-            opacity: 0.85;
-            transform: translateX(2px);
-        }
-
-        .biostat .service-title {
-            color: #38bdf8;
-        }
-
-        .service-desc {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-        }
-
-        .docking-embed-box {
-            padding: 1rem 0;
-            margin-top: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .docking-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--border-color);
-            background-color: var(--primary-dark);
+        /* --- About Us Summary Presentation Layout --- */
+        .about-bg {
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .about-wrapper {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 3rem;
-            border: 1px solid #e2e8f0;
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .about-wrapper p {
-            font-size: 1.1rem;
-            color: #475569;
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            color: #334155;
+            margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
+        /* --- Secure Contact Architecture --- */
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 12px;
+            background: #0f172a;
+            padding: 3.5rem;
+            border-radius: 16px;
             border: 1px solid var(--border-color);
-            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.3);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.75rem;
         }
 
         .form-group label {
             display: block;
-            color: var(--text-light);
+            color: #f8fafc;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             font-size: 0.95rem;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.85rem;
             border: 1px solid var(--border-color);
             background-color: var(--primary-dark);
-            border-radius: 6px;
+            border-radius: 8px;
             color: white;
             font-size: 1rem;
             box-sizing: border-box;
+            transition: border-color 0.2s ease;
         }
 
         .form-group input:focus, .form-group textarea:focus {
@@ -236,141 +292,160 @@
             background-color: var(--accent-cyan);
             color: white;
             border: none;
-            padding: 0.75rem 2rem;
-            font-size: 1rem;
+            padding: 0.9rem 2rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
         }
 
         .submit-btn:hover {
             background-color: #0284c7;
         }
 
+        .submit-btn:active {
+            transform: scale(0.99);
+        }
+
+        /* --- Global Footer --- */
         footer {
             background-color: var(--primary-dark);
-            color: var(--text-muted);
+            color: #64748b;
             text-align: center;
-            padding: 1.5rem;
-            font-size: 0.85rem;
+            padding: 2.5rem 1.5rem;
+            font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
-            margin-top: 5rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- Fixed Premium Navigation Top-Bar Header -->
     <header>
-        <div class="logo">Biostat &amp; <span>BioDiscovery LLC</span></div>
+        <a href="#" class="logo">Biostat &amp; <span>BioDiscovery LLC</span></a>
         <nav>
             <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="database.html" target="_blank">DL-HMMD Portal</a></li>
+                <li><a href="#biostat">Biostatistics</a></li>
+                <li><a href="#biodiscovery">BioDiscovery</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="database.html" target="_blank" class="nav-db-btn">DL-HMMD Portal</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="main-content">
-        
-        <section id="services" class="container">
-            <div class="grid">
-                
-                <div class="card biostat">
-                    <h2>📊 Biostatistics &amp; Data Analytics</h2>
-                    <ul class="service-list">
-                        <li class="service-item">
-                            <div class="service-title">Longitudinal Data Analysis</div>
-                            <div class="service-desc">Statistical modeling tracking patient cohorts and clinical variables across multiple repeated time increments.</div>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-title">Real-World Data (RWD) Analysis</div>
-                            <div class="service-desc">Converting electronic health records (EHR), claims databases, and registries into real-world evidence (RWE).</div>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-title">Survival Analysis</div>
-                            <div class="service-desc">Rigorous time-to-event statistical computations evaluating clinical endpoints and therapeutic durability.</div>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-title">Predictive Modeling &amp; Diagnostic Evaluation</div>
-                            <div class="service-desc">Machine learning algorithms and diagnostic framework validation for target biomarker discovery and accuracy reporting.</div>
-                        </li>
-                        <li class="service-item">
-                            <div class="service-title">Meta-Analysis &amp; Systematic Reviews</div>
-                            <div class="service-desc">Aggregating and harmonizing global cross-study datasets to output high-confidence mathematical syntheses.</div>
-                        </li>
-                    </ul>
-                </div>
+    <!-- SECTION 1: PERFECT FULL-SCREEN IDENTITY HERO DISPLAY (THE FIRST SCREEN) -->
+    <section class="hero-fullscreen">
+        <div class="hero-content">
+            <h1 class="hero-title">The advanced data and <br><span>discovery partner of choice.</span></h1>
+            <p class="hero-subtitle">Deploying institutional-grade biostatistical modeling frameworks alongside advanced computational biotools to accelerate molecular design targets.</p>
+            <a href="#biostat" class="hero-btn">Review Operational Capabilities</a>
+        </div>
+    </section>
 
-                <div class="card biodiscover">
-                    <h2>🧬 BioDiscovery &amp; BioPlots</h2>
-                    <ul class="service-list">
-                        
-                        <li class="service-item">
-                            <div class="service-title">
-                                <a href="database.html" target="_blank" class="database-title-link">
-                                    Drug-Like Human Microbial Metabolites Database (DL-HMMD)
-                                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i>
-                                </a>
-                            </div>
-                            <div class="service-desc">Advanced target discovery and computational mapping leveraging structured human microbial metabolite datasets for drug discovery.</div>
-                        </li>
-                        
-                        <li class="service-item">
-                            <div class="service-title">In Silico Molecular Docking</div>
-                            <div class="service-desc">Advanced virtual compound screening, structure-based design, and ligand-protein affinity simulations. Generated computational model output displayed below:</div>
-                            
-                            <div class="docking-embed-box">
-                                <img src="DUR_Interaction2.png" alt="In Silico Molecular Docking Structural Intermolecular Analysis" class="docking-img">
-                            </div>
-                        </li>
-
-                        <li class="service-item">
-                            <div class="service-title">BioPlots Visualization Platforms</div>
-                            <div class="service-desc">Interactive, publication-ready visualization tools, dashboards, and automated plot generation.</div>
-                        </li>
-                    </ul>
-                </div>
-
+    <!-- SECTION 2: BIOSTATISTICS SERVICES MODULE -->
+    <section class="container" id="biostat">
+        <div class="section-header">
+            <h2>📊 Biostatistics &amp; Data Analytics</h2>
+            <p>Providing robust mathematical infrastructure to convert clinical variables and complex cohorts into compliant, publication-ready statistical documentation.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="card-icon">📈</div>
+                <h3>Longitudinal Data Analysis</h3>
+                <p>Advanced statistical modeling tracking client patient cohorts and clinical outcomes across multiple continuous, repeated time increments.</p>
             </div>
-        </section>
+            <div class="service-card">
+                <div class="card-icon">🏥</div>
+                <h3>Real-World Data (RWD)</h3>
+                <p>Processing electronic health records (EHR), insurance claims databases, and registries to extract definitive real-world evidence (RWE).</p>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">⏳</div>
+                <h3>Survival Analysis</h3>
+                <p>Rigorous mathematical time-to-event statistical computations assessing therapeutic durability, risk metrics, and clinical endpoints.</p>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">🎯</div>
+                <h3>Predictive Modeling</h3>
+                <p>Deploying specialized analytical validation frameworks to discover high-confidence target biomarkers and accuracy reports.</p>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">📚</div>
+                <h3>Meta-Analysis</h3>
+                <p>Aggregating and harmonizing global cross-study datasets to output definitive high-powered scientific reviews.</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="about" class="container" style="border-top: 1px solid #e2e8f0;">
+    <!-- SECTION 3: BIODISCOVERY SERVICES MODULE WITH BIOTOOLS -->
+    <section class="container" id="biodiscovery" style="border-top: 1px solid #e2e8f0;">
+        <div class="section-header">
+            <h2>🧬 BioDiscovery &amp; Biotools Platforms</h2>
+            <p>Bridging molecular informatics with structural modeling to drive modern preclinical development targets.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="card-icon">💻</div>
+                <h3>In Silico Molecular Docking</h3>
+                <p>Advanced structure-based computer screening, spatial layout modeling, and ligand-protein binding affinity simulations.</p>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">📊</div>
+                <h3>BioPlots Visualizations</h3>
+                <p>Interactive, publication-ready graphic dashboards and automated plot script pipelines engineered using advanced code tools.</p>
+            </div>
+            <div class="service-card">
+                <div class="card-icon">🗄️</div>
+                <h3>DL-HMMD Asset Portal</h3>
+                <p>Target mapping tools leveraging custom structured human microbial metabolite data. Access records via the top portal navigation button.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: CORPORATE SUMMARY OVERVIEW -->
+    <section id="about" class="about-bg">
+        <div class="container">
             <div class="about-wrapper">
-                <p><strong>Biostat &amp; BioDiscovery LLC</strong> is a premier specialized contract consultancy designed to bridge advanced mathematical data science with structural molecular discovery. We provide end-to-end analytical infrastructure for healthcare institutions, academic laboratories, and emerging biotechnology corporations.</p>
+                <p><strong>Biostat &amp; BioDiscovery LLC</strong> is a premier contract consultancy firm designed to bridge advanced mathematical data science with structural molecular discovery. We provide end-to-end analytical infrastructure for healthcare institutions, academic laboratories, and emerging biotechnology corporations.</p>
                 <p>Our operational capabilities are grounded in extensive research expertise spanning clinical health informatics, real-world data processing, and antimicrobial discovery mechanisms. By deploying robust statistical frameworks alongside structural in silico modeling workflows, we transform multi-dimensional translational datasets into compliant, publication-ready milestones.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="container" style="border-top: 1px solid #e2e8f0; margin-bottom: 2rem;">
-            <div class="contact-form">
-                <form action="https://formspree.io/f/xgoqredv" method="POST">
-                    <div class="form-group">
-                        <label for="name">Full Name / Primary Investigator</label>
-                        <input type="text" id="name" name="name" required placeholder="Dr. Jane Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Institutional/Corporate Email</label>
-                        <input type="email" id="email" name="email" required placeholder="j.doe@institution.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Area of Inquiry</label>
-                        <input type="text" id="subject" name="subject" required placeholder="e.g., Longitudinal Study Modeling / Virtual Docking Project">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Project Scope Summary</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Briefly describe your dataset structure, target proteins, or analytical requirements..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Project Brief</button>
-                </form>
-            </div>
-        </section>
+    <!-- SECTION 5: SECURED ENCRYPTED CONTACT ARCHITECTURE -->
+    <section id="contact" class="container">
+        <div class="section-header">
+            <h2>✉️ Submit a Project Brief</h2>
+            <p>Connect directly with our primary consultants to review your dataset structure, tracking requirements, or project scope specs.</p>
+        </div>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/xgoqredv" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name / Primary Investigator</label>
+                    <input type="text" id="name" name="name" required placeholder="Dr. Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Institutional/Corporate Email</label>
+                    <input type="email" id="email" name="email" required placeholder="j.doe@institution.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Area of Inquiry</label>
+                    <input type="text" id="subject" name="subject" required placeholder="e.g., Longitudinal Study Modeling / Virtual Docking Project">
+                </div>
+                <div class="form-group">
+                    <label for="message">Project Scope Summary</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Briefly describe your dataset structure, target proteins, or analytical requirements..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Project Brief</button>
+            </form>
+        </div>
+    </section>
 
-    </div>
-
+    <!-- Corporate Footer -->
     <footer>
         <p>&copy; 2026 Biostat &amp; BioDiscovery LLC. All rights reserved. Professional consulting services.</p>
     </footer>
