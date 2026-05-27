@@ -134,7 +134,7 @@
         .survival-canvas-panel canvas {
             width: 100% !important;
             height: 75% !important;
-            filter: drop-shadow(0 0 30px rgba(14, 165, 233, 0.4)); /* Stronger canvas line glow */
+            filter: drop-shadow(0 0 30px rgba(14, 165, 233, 0.4));
         }
 
         /* Right Panel: Color-Matched 3D Structural Viewer Area */
@@ -148,7 +148,7 @@
             background-color: var(--primary-dark);
         }
 
-        /* Fixed Balanced Vignette Overlay Mask: Toned down to let the background elements show brilliantly */
+        /* Fixed Balanced Vignette Overlay Mask */
         .hero-fullscreen::before {
             content: '';
             position: absolute;
@@ -181,7 +181,6 @@
             color: #ffffff;
             margin-bottom: 1.5rem;
             letter-spacing: -0.03em;
-            /* Text shadows enhanced to stay sharp on a lighter background */
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 30px rgba(0, 0, 0, 0.9);
         }
 
@@ -400,7 +399,7 @@
         <div class="hero-content">
             <h1 class="hero-title">The advanced data and <br><span>discovery partner of choice.</span></h1>
             <p class="hero-subtitle">Deploying institutional-grade biostatistical modeling frameworks alongside advanced computational biotools to accelerate molecular design targets.</p>
-            <a href="#biostat" class="hero-btn">Review Operational Capabilities</a>
+            <a href="#biostat" class="hero-btn">Our services</a>
         </div>
     </section>
 
@@ -473,7 +472,7 @@
 
     <section id="contact" class="container">
         <div class="section-header">
-            <h2>✉️ Submit a Project Brief</h2>
+            <h2>✉️ Request a Consultation</h2>
             <p>Connect directly with our primary consultants to review your dataset structure, tracking requirements, or project scope specs.</p>
         </div>
         <div class="contact-form">
@@ -482,8 +481,9 @@
                     <label for="name">Full Name / Primary Investigator</label>
                     <input type="text" id="name" name="name" required placeholder="Dr. Jane Doe">
                 </div>
+                <!-- SIMPLIFIED EMAIL LABEL -->
                 <div class="form-group">
-                    <label for="email">Institutional/Corporate Email</label>
+                    <label for="email">Email</label>
                     <input type="email" id="email" name="email" required placeholder="j.doe@institution.com">
                 </div>
                 <div class="form-group">
@@ -515,13 +515,11 @@
 
             // Fetching a highly vibrant, high-definition model complex
             $3Dmol.download("pdb:1A4W", viewer, {}, function() {
-                // Using a brighter, thick ribbon model to stand out clearly against dark space
                 viewer.setStyle({}, {cartoon: {color: 'cyan', opacity: 0.85, tubes: true, radius: 0.25}});
-                // Rendering complex interactive active centers in thick neon stick formats
                 viewer.setStyle({within:{distance: 6, sel:{resn:'SIT'}}}, {stick:{colorscheme:'yellowCarbon', radius:0.35}});
                 viewer.zoomTo();
                 viewer.render();
-                viewer.spin(true, 0.12); /* Brisk, clean rotational speed */
+                viewer.spin(true, 0.12);
             });
 
             // ==========================================
@@ -532,9 +530,8 @@
             let baselineData = [100, 100, 94, 94, 87, 83, 83, 74, 68, 68, 55, 50, 50];
             let intervals = Array.from({length: baselineData.length}, (_, i) => `T-${i * 4}`);
 
-            // Immersive bright cyan gradient layer
             const chartGradient = ctx.createLinearGradient(0, 0, 0, 450);
-            chartGradient.addColorStop(0, 'rgba(14, 165, 233, 0.4)'); /* Boosted baseline opacity */
+            chartGradient.addColorStop(0, 'rgba(14, 165, 233, 0.4)');
             chartGradient.addColorStop(1, 'rgba(3, 7, 18, 0.0)');
 
             const liveSurvivalChart = new Chart(ctx, {
@@ -543,8 +540,8 @@
                     labels: intervals,
                     datasets: [{
                         data: baselineData,
-                        borderColor: '#38bdf8',      /* Upgraded to high-luminance light cyan */
-                        borderWidth: 4.5,             /* Thicker line profile */
+                        borderColor: '#38bdf8',
+                        borderWidth: 4.5,
                         stepped: true,
                         backgroundColor: chartGradient,
                         fill: true,
@@ -568,9 +565,9 @@
                         y: {
                             min: 0,
                             max: 100,
-                            grid: { color: 'rgba(14, 165, 233, 0.18)' }, /* High-definition alignment grids */
+                            grid: { color: 'rgba(14, 165, 233, 0.18)' },
                             ticks: {
-                                color: '#ffffff',                         /* Clear white text labels */
+                                color: '#ffffff',
                                 font: { size: 12, weight: '800' },
                                 callback: function(value) { return value + '%'; }
                             }
@@ -580,7 +577,6 @@
                 }
             });
 
-            // Data variance stream loop
             setInterval(() => {
                 for(let i = 2; i < liveSurvivalChart.data.datasets[0].data.length; i++) {
                     let randomShift = (Math.random() - 0.5) * 1.5;
