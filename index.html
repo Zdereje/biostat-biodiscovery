@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biostat & BioDiscovery LLC - Expert Analytics & Biotools</title>
+    <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary-dark: #020617;   /* Deepest midnight blue */
+            --primary-dark: #030712;   /* Ultra-deep obsidian blue */
+            --bg-panel-left: #050c1e;  /* Deep tech navy gradient backdrop */
             --bg-main: #ffffff;        /* Pure white background for content sections */
-            --card-bg: #0f172a;        /* Elegant dark charcoal for content cards */
+            --card-bg: #f8fafc;        /* Clean, professional light slate for cards */
             --accent-cyan: #0ea5e9;    /* Vibrant technology cyan */
-            --text-light: #f8fafc;     /* Light text inside cards */
-            --text-muted: #64748b;     /* Slate grey for secondary text */
-            --border-color: #1e293b;   /* Subtle modern dividers */
+            --text-light: #f8fafc;     /* Light text inside dark headers */
+            --text-muted: #64748b;     /* Slate grey for secondary body text */
+            --border-color: #cbd5e1;   /* Modern crisp layout dividers */
         }
 
         html {
@@ -30,9 +33,9 @@
 
         /* --- Full Width Premium Sticky Header --- */
         header {
-            background-color: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             color: white;
             padding: 1.2rem 3rem;
             display: flex;
@@ -45,7 +48,7 @@
             width: 100%;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
         }
 
         .logo {
@@ -81,13 +84,12 @@
             color: var(--accent-cyan);
         }
 
-        /* Standalone styled tab button for the asset registry portal */
         .nav-db-btn {
             background-color: transparent;
             color: var(--accent-cyan);
             padding: 0.5rem 1.2rem;
             border-radius: 6px;
-            border: 1px solid rgba(14, 165, 233, 0.4);
+            border: 1px solid rgba(14, 165, 233, 0.5);
             font-weight: 600;
             transition: all 0.2s ease;
         }
@@ -96,9 +98,10 @@
             background-color: var(--accent-cyan);
             color: white;
             border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
         }
 
-        /* --- IMMERSIVE FULL-SCREEN FRONT PAGE LANDING --- */
+        /* --- HIGH-IMPACT SEAMLESS HERO BACKGROUND CONTAINER --- */
         .hero-fullscreen {
             height: 100vh;
             width: 100%;
@@ -107,18 +110,67 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 1.5rem;
             box-sizing: border-box;
             position: relative;
+            overflow: hidden;
+        }
+
+        /* Left Panel: High-Contrast Kinetic Survival Graph Area */
+        .survival-canvas-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+            padding: 10rem 4rem 4rem 5rem;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--bg-panel-left) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .survival-canvas-panel canvas {
+            width: 100% !important;
+            height: 75% !important;
+            filter: drop-shadow(0 0 30px rgba(14, 165, 233, 0.4)); /* Stronger canvas line glow */
+        }
+
+        /* Right Panel: Color-Matched 3D Structural Viewer Area */
+        .docking-canvas-panel {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+            background-color: var(--primary-dark);
+        }
+
+        /* Fixed Balanced Vignette Overlay Mask: Toned down to let the background elements show brilliantly */
+        .hero-fullscreen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(3, 7, 18, 0.4) 0%, rgba(3, 7, 18, 0.65) 50%, rgba(3, 7, 18, 0.9) 100%);
+            z-index: 2;
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 1000px;
-            animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 3;
+            max-width: 950px;
+            padding: 0 1.5rem;
+            animation: fadeIn 1.2s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -129,39 +181,44 @@
             color: #ffffff;
             margin-bottom: 1.5rem;
             letter-spacing: -0.03em;
+            /* Text shadows enhanced to stay sharp on a lighter background */
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 4px 30px rgba(0, 0, 0, 0.9);
         }
 
         .hero-title span {
             color: var(--accent-cyan);
+            text-shadow: 0 0 35px rgba(14, 165, 233, 0.6);
         }
 
         .hero-subtitle {
             font-size: 1.35rem;
-            color: #cbd5e1;
+            color: #e2e8f0;
             max-width: 750px;
             margin: 0 auto 2.5rem auto;
             line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
         }
 
         .hero-btn {
             background-color: var(--accent-cyan);
             color: white;
-            padding: 0.8rem 2.2rem;
+            padding: 0.9rem 2.4rem;
             font-size: 1.05rem;
             font-weight: 700;
             text-decoration: none;
             border-radius: 6px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            transition: all 0.2s ease;
             display: inline-block;
-            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.5);
         }
 
         .hero-btn:hover {
             background-color: #0284c7;
             transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(14, 165, 233, 0.7);
         }
 
-        /* --- CONTENT SECTIONS (TUCKED BELOW THE FOLD) --- */
+        /* --- CONTENT SECTIONS --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -195,11 +252,11 @@
         }
 
         .service-card {
-            background: #f8fafc;
+            background: var(--card-bg);
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 3rem 2.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .service-card:hover {
@@ -228,7 +285,7 @@
             line-height: 1.6;
         }
 
-        /* --- About Us Summary Presentation Layout --- */
+        /* --- About Us Module --- */
         .about-bg {
             background-color: #f8fafc;
             border-top: 1px solid #e2e8f0;
@@ -255,7 +312,7 @@
             background: #0f172a;
             padding: 3.5rem;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #1e293b;
             box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.3);
         }
 
@@ -274,7 +331,7 @@
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 0.85rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid #1e293b;
             background-color: var(--primary-dark);
             border-radius: 8px;
             color: white;
@@ -306,10 +363,6 @@
             background-color: #0284c7;
         }
 
-        .submit-btn:active {
-            transform: scale(0.99);
-        }
-
         /* --- Global Footer --- */
         footer {
             background-color: var(--primary-dark);
@@ -317,13 +370,12 @@
             text-align: center;
             padding: 2.5rem 1.5rem;
             font-size: 0.9rem;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid #1e293b;
         }
     </style>
 </head>
 <body>
 
-    <!-- Fixed Premium Navigation Top-Bar Header -->
     <header>
         <a href="#" class="logo">Biostat &amp; <span>BioDiscovery LLC</span></a>
         <nav>
@@ -337,8 +389,14 @@
         </nav>
     </header>
 
-    <!-- SECTION 1: PERFECT FULL-SCREEN IDENTITY HERO DISPLAY (THE FIRST SCREEN) -->
     <section class="hero-fullscreen">
+        
+        <div class="survival-canvas-panel">
+            <canvas id="liveSurvivalChart"></canvas>
+        </div>
+
+        <div id="heroDockingViewer" class="docking-canvas-panel"></div>
+
         <div class="hero-content">
             <h1 class="hero-title">The advanced data and <br><span>discovery partner of choice.</span></h1>
             <p class="hero-subtitle">Deploying institutional-grade biostatistical modeling frameworks alongside advanced computational biotools to accelerate molecular design targets.</p>
@@ -346,7 +404,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: BIOSTATISTICS SERVICES MODULE -->
     <section class="container" id="biostat">
         <div class="section-header">
             <h2>📊 Biostatistics &amp; Data Analytics</h2>
@@ -381,7 +438,6 @@
         </div>
     </section>
 
-    <!-- SECTION 3: BIODISCOVERY SERVICES MODULE WITH BIOTOOLS -->
     <section class="container" id="biodiscovery" style="border-top: 1px solid #e2e8f0;">
         <div class="section-header">
             <h2>🧬 BioDiscovery &amp; Biotools</h2>
@@ -406,7 +462,6 @@
         </div>
     </section>
 
-    <!-- SECTION 4: CORPORATE SUMMARY OVERVIEW -->
     <section id="about" class="about-bg">
         <div class="container">
             <div class="about-wrapper">
@@ -416,7 +471,6 @@
         </div>
     </section>
 
-    <!-- SECTION 5: SECURED ENCRYPTED CONTACT ARCHITECTURE -->
     <section id="contact" class="container">
         <div class="section-header">
             <h2>✉️ Submit a Project Brief</h2>
@@ -445,10 +499,100 @@
         </div>
     </section>
 
-    <!-- Corporate Footer -->
     <footer>
         <p>&copy; 2026 Biostat &amp; BioDiscovery LLC. All rights reserved. Professional consulting services.</p>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ===============================================
+            // DEPLOY RIGHT PANEL: VIBRANT GLOWING MOLECULE
+            // ===============================================
+            let element = document.getElementById("heroDockingViewer");
+            let viewer = $3Dmol.createViewer(element, { defaultcolors: $3Dmol.rasmolElementColors });
+            
+            viewer.setBackgroundColor(0x030712);
+
+            // Fetching a highly vibrant, high-definition model complex
+            $3Dmol.download("pdb:1A4W", viewer, {}, function() {
+                // Using a brighter, thick ribbon model to stand out clearly against dark space
+                viewer.setStyle({}, {cartoon: {color: 'cyan', opacity: 0.85, tubes: true, radius: 0.25}});
+                // Rendering complex interactive active centers in thick neon stick formats
+                viewer.setStyle({within:{distance: 6, sel:{resn:'SIT'}}}, {stick:{colorscheme:'yellowCarbon', radius:0.35}});
+                viewer.zoomTo();
+                viewer.render();
+                viewer.spin(true, 0.12); /* Brisk, clean rotational speed */
+            });
+
+            // ==========================================
+            // DEPLOY LEFT PANEL: VIBRANT SURVIVAL DATA
+            // ==========================================
+            const ctx = document.getElementById('liveSurvivalChart').getContext('2d');
+            
+            let baselineData = [100, 100, 94, 94, 87, 83, 83, 74, 68, 68, 55, 50, 50];
+            let intervals = Array.from({length: baselineData.length}, (_, i) => `T-${i * 4}`);
+
+            // Immersive bright cyan gradient layer
+            const chartGradient = ctx.createLinearGradient(0, 0, 0, 450);
+            chartGradient.addColorStop(0, 'rgba(14, 165, 233, 0.4)'); /* Boosted baseline opacity */
+            chartGradient.addColorStop(1, 'rgba(3, 7, 18, 0.0)');
+
+            const liveSurvivalChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: intervals,
+                    datasets: [{
+                        data: baselineData,
+                        borderColor: '#38bdf8',      /* Upgraded to high-luminance light cyan */
+                        borderWidth: 4.5,             /* Thicker line profile */
+                        stepped: true,
+                        backgroundColor: chartGradient,
+                        fill: true,
+                        pointBackgroundColor: '#0ea5e9',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4.5,
+                        pointHoverRadius: 8,
+                        tension: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { 
+                            grid: { color: 'rgba(255, 255, 255, 0.04)' }, 
+                            ticks: { color: '#94a3b8', font: { size: 10, weight: '600' } } 
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            grid: { color: 'rgba(14, 165, 233, 0.18)' }, /* High-definition alignment grids */
+                            ticks: {
+                                color: '#ffffff',                         /* Clear white text labels */
+                                font: { size: 12, weight: '800' },
+                                callback: function(value) { return value + '%'; }
+                            }
+                        }
+                    },
+                    animation: { duration: 400, easing: 'linear' }
+                }
+            });
+
+            // Data variance stream loop
+            setInterval(() => {
+                for(let i = 2; i < liveSurvivalChart.data.datasets[0].data.length; i++) {
+                    let randomShift = (Math.random() - 0.5) * 1.5;
+                    let currentVal = liveSurvivalChart.data.datasets[0].data[i] + randomShift;
+                    
+                    if(currentVal <= liveSurvivalChart.data.datasets[0].data[i-1] && currentVal > 5) {
+                        liveSurvivalChart.data.datasets[0].data[i] = parseFloat(currentVal.toFixed(1));
+                    }
+                }
+                liveSurvivalChart.update('none'); 
+            }, 2500);
+        });
+    </script>
 </body>
 </html>
