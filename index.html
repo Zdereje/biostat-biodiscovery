@@ -139,7 +139,6 @@
             font-size: 1.1rem;
         }
 
-        /* Clickable Title Link Styling */
         .database-title-link {
             text-decoration: none;
             color: var(--accent-cyan);
@@ -263,13 +262,11 @@
 </head>
 <body>
 
-    <!-- Clickable Header Navigation Menu Links -->
     <header>
         <div class="logo">Biostat &amp; <span>BioDiscovery LLC</span></div>
         <nav>
             <ul>
                 <li><a href="#services">Services</a></li>
-                <!-- Header link to database -->
                 <li><a href="database.html" target="_blank">DL-HMMD Portal</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -279,11 +276,9 @@
 
     <div class="main-content">
         
-        <!-- SECTION 1: CORE SERVICE CARDS -->
         <section id="services" class="container">
             <div class="grid">
                 
-                <!-- Pillar 1: Biostatistics -->
                 <div class="card biostat">
                     <h2>📊 Biostatistics &amp; Data Analytics</h2>
                     <ul class="service-list">
@@ -310,15 +305,12 @@
                     </ul>
                 </div>
 
-                <!-- Pillar 2: BioDiscovery & BioPlots -->
                 <div class="card biodiscover">
                     <h2>🧬 BioDiscovery &amp; BioPlots</h2>
                     <ul class="service-list">
                         
-                        <!-- Standalone Database Item Row -->
                         <li class="service-item">
                             <div class="service-title">
-                                <!-- Clean clickable title string pointing to database portal -->
                                 <a href="database.html" target="_blank" class="database-title-link">
                                     Drug-Like Human Microbial Metabolites Database (DL-HMMD)
                                     <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i>
@@ -346,7 +338,6 @@
             </div>
         </section>
 
-        <!-- SECTION 2: ABOUT US -->
         <section id="about" class="container" style="border-top: 1px solid #e2e8f0;">
             <div class="about-wrapper">
                 <p><strong>Biostat &amp; BioDiscovery LLC</strong> is a premier specialized contract consultancy designed to bridge advanced mathematical data science with structural molecular discovery. We provide end-to-end analytical infrastructure for healthcare institutions, academic laboratories, and emerging biotechnology corporations.</p>
@@ -354,25 +345,24 @@
             </div>
         </section>
 
-        <!-- SECTION 3: CONTACT US -->
         <section id="contact" class="container" style="border-top: 1px solid #e2e8f0; margin-bottom: 2rem;">
             <div class="contact-form">
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Inquiry captured. Professional consulting representative will follow up.');">
+                <form action="https://formspree.io/f/xgoqredv" method="POST">
                     <div class="form-group">
                         <label for="name">Full Name / Primary Investigator</label>
-                        <input type="text" id="name" required placeholder="Dr. Jane Doe">
+                        <input type="text" id="name" name="name" required placeholder="Dr. Jane Doe">
                     </div>
                     <div class="form-group">
                         <label for="email">Institutional/Corporate Email</label>
-                        <input type="email" id="email" required placeholder="j.doe@institution.com">
+                        <input type="email" id="email" name="email" required placeholder="j.doe@institution.com">
                     </div>
                     <div class="form-group">
                         <label for="subject">Area of Inquiry</label>
-                        <input type="text" id="subject" required placeholder="e.g., Longitudinal Study Modeling / Virtual Docking Project">
+                        <input type="text" id="subject" name="subject" required placeholder="e.g., Longitudinal Study Modeling / Virtual Docking Project">
                     </div>
                     <div class="form-group">
                         <label for="message">Project Scope Summary</label>
-                        <textarea id="message" rows="5" required placeholder="Briefly describe your dataset structure, target proteins, or analytical requirements..."></textarea>
+                        <textarea id="message" name="message" rows="5" required placeholder="Briefly describe your dataset structure, target proteins, or analytical requirements..."></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Submit Project Brief</button>
                 </form>
