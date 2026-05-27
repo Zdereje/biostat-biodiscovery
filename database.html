@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Biostat & BioDiscovery LLC | Discovery Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --primary-blue: #005088; --border-grey: #e2e8f0; --text-dark: #1e293b; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--text-dark); background-color: #f8fafc; margin: 0; padding: 40px 20px; }
+        .db-container { max-width: 1400px; margin: 0 auto; background: #ffffff; padding: 40px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid var(--border-grey); }
+        h1 { font-family: 'Merriweather', serif; color: var(--primary-blue); font-size: 32px; margin: 0 0 8px 0; }
+        .sub-header { color: #64748b; font-size: 15px; margin-bottom: 30px; border-bottom: 2px solid var(--primary-blue); padding-bottom: 12px; font-weight: 500; }
+        .search-box-wrapper { position: relative; margin-bottom: 30px; }
+        .search-input { width: 100%; padding: 16px 20px 16px 50px; font-size: 16px; border: 2px solid var(--border-grey); border-radius: 30px; outline: none; box-sizing: border-box; }
+        .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 18px; }
+        
+        /* Updated Table Properties for Structural Image Support */
+        .results-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .results-table th { background-color: var(--primary-blue); color: #ffffff; padding: 14px 15px; font-weight: 500; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .results-table td { padding: 10px 15px; border-bottom: 1px solid var(--border-grey); font-size: 14.5px; vertical-align: middle; }
+        .results-table tr:hover { background-color: #f8fafc; cursor: pointer; }
+        
+        /* Structure Thumbnail Image Styling */
+        .table-structure-img { width: 65px; height: 65px; background: #ffffff; border-radius: 6px; padding: 2px; border: 1px solid #cbd5e1; object-fit: contain; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .no-struct-placeholder { width: 65px; height: 65px; background: #f1f5f9; border-radius: 6px; border: 1px dashed #cbd5e1; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #94a3b8; font-weight: 700; text-align: center; }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.4); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-card { background: #ffffff; width: 100%; max-width: 760px; border-radius: 16px; padding: 35px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-top: 8px solid var(--primary-blue); position: relative; max-height: 85vh; overflow-y: auto; }
+        .close-modal-btn { position: absolute; top: 20px; right: 25px; font-size: 26px; color: #94a3b8; cursor: pointer; border: none; background: none; }
+        .detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 20px; }
+        .detail-item { background: #f8fafc; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--border-grey); }
+        .detail-label { font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 3px; letter-spacing: 0.5px; }
+        .detail-value { font-size: 14.5px; font-weight: 500; color: #0f172a; word-break: break-all; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+        .badge-t1 { background-color: #e6f4ea; color: #137333; }
+        .badge-t2 { background-color: #e8f0fe; color: #1a73e8; }
+        .pub-link { display: inline-block; margin-right: 8px; margin-top: 5px; background-color: #f1f5f9; padding: 4px 10px; border-radius: 6px; font-size: 12.5px; font-weight: 500; color: var(--primary-blue); text-decoration: none; border: 1px solid #cbd5e1; }
+    </style>
+</head>
+<body>
+
+<div class="db-container">
+    <h1>Drug-Like Human Microbial Metabolites Database</h1>
+    <div class="sub-header">Biostat & BioDiscovery LLC | Core Preclinical Search Matrix</div>
+    
+    <div class="search-box-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="dbSearchInput" class="search-input" placeholder="Filter by ID, compound name, categorization tier, or biological target...">
+    </div>
+    
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th>Structure</th> <th>Bio_ID</th>
+                <th>mimi_ID</th>
+                <th>Name</th>
+                <th>Prioritization</th>
+                <th>MW</th>
+                <th>logP</th>
+            </tr>
+        </thead>
+        <tbody id="dbResultsBody">
+            <tr><td colspan="7" style="text-align:center; color:#64748b;"><i class="fa-solid fa-spinner fa-spin"></i> Loading pipeline registry arrays...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal-overlay" id="detailModalOverlay">
+    <div class="modal-card">
+        <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+        <h2 id="modalName" style="font-family: 'Merriweather', serif; color: var(--primary-blue); margin: 0 0 2px 0;">Compound Name</h2>
+        <div id="modalBioId" style="color: #64748b; font-size: 13.5px; font-weight: 700; letter-spacing: 0.5px;">BIO_ID</div>
+        
+        <div class="detail-grid">
+            <div class="detail-item"><div class="detail-label">HMDB ID</div><div class="detail-value" id="modalHmdbId">-</div></div>
+            <div class="detail-item"><div class="detail-label">SMILES</div><div class="detail-value" id="modalSmiles" style="font-family:monospace; font-size:12px;">-</div></div>
+            <div class="detail-item"><div class="detail-label">Number of HBD</div><div class="detail-value" id="modalHbd">-</div></div>
+            <div class="detail-item"><div class="detail-label">Number of HBA</div><div class="detail-value" id="modalHba">-</div></div>
+            <div class="detail-item"><div class="detail-label">TPSA</div><div class="detail-value" id="modalTpsa">-</div></div>
+            <div class="detail-item"><div class="detail-label">Rotatable Bond</div><div class="detail-value" id="modalRotBonds">-</div></div>
+            <div class="detail-item"><div class="detail-label">logS (ESOL)</div><div class="detail-value" id="modalLogS" style="font-weight:700;">-</div></div>
+            <div class="detail-item"><div class="detail-label">SA Score</div><div class="detail-value" id="modalSAScore" style="font-weight:700; color:#b06000;">-</div></div>
+            <div class="detail-item"><div class="detail-label">Lipinski Ro5 Violations</div><div class="detail-value" id="modalLipinski">-</div></div>
+            <div class="detail-item"><div class="detail-label">Veber Rules</div><div class="detail-value" id="modalVeber">-</div></div>
+            <div class="detail-item" style="grid-column: span 2;"><div class="detail-label">Biological Activity</div><div class="detail-value" id="modalBioActivity" style="font-weight:700;">-</div></div>
+            <div class="detail-item" style="grid-column: span 2;"><div class="detail-label">Literatures</div><div class="detail-value" id="modalPublications">-</div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const DATA_PATH = "mimedb_web_registry.json";
+    let databaseArray = [];
+
+    async function loadData() {
+        try {
+            const response = await fetch(DATA_PATH);
+            databaseArray = await response.json();
+            renderTable(databaseArray);
+        } catch (error) {
+            document.getElementById("dbResultsBody").innerHTML = `<tr><td colspan="7" style="text-align:center; color:#c5221f; font-weight:bold;">Error fetching data registry json.</td></tr>`;
+        }
+    }
+
+    function renderTable(records) {
+        const tbody = document.getElementById("dbResultsBody");
+        if(records.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#64748b;">No matching entries found.</td></tr>`;
+            return;
+        }
+        tbody.innerHTML = records.map(item => {
+            // Automated web-safe string cleaner to safely route SMILES codes into image tags
+            let structureElementHTML = `<div class="no-struct-placeholder">No Structure</div>`;
+            if (item.moldb_smiles && item.moldb_smiles.trim() !== "") {
+                const encodedSmiles = encodeURIComponent(item.moldb_smiles.trim());
+                structureElementHTML = `<img class="table-structure-img" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/${encodedSmiles}/PNG?image_size=150x150" alt="Structure Thumbnail" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"no-struct-placeholder\">Unindexed</div>';">`;
+            }
+
+            return `
+                <tr onclick="showPopup('${item.bio_id}')">
+                    <td>${structureElementHTML}</td>
+                    <td style="font-weight:700; color:var(--primary-blue);">${item.bio_id}</td>
+                    <td style="font-weight:500; color:#475569;">${item.mimi_id || 'N/A'}</td>
+                    <td style="font-weight:600;">${item.name || 'Unnamed'}</td>
+                    <td><span class="badge ${item.lead_classification && item.lead_classification.includes('Tier 1') ? 'badge-t1':'badge-t2'}">${item.lead_classification ? item.lead_classification.split(':')[0] : 'Tier 5'}</span></td>
+                    <td>${item.mol_weight}</td>
+                    <td>${item.logp}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    function showPopup(bioId) {
+        const row = databaseArray.find(x => x.bio_id === bioId);
+        if(!row) return;
+
+        document.getElementById("modalName").innerText = row.name || "Unknown Compound";
+        document.getElementById("modalBioId").innerText = row.bio_id;
+        document.getElementById("modalHmdbId").innerText = row.hmdb_id || "Not Listed";
+        document.getElementById("modalSmiles").innerText = row.moldb_smiles || "N/A";
+        document.getElementById("modalHbd").innerText = row.hbond_donors !== undefined ? row.hbond_donors : "-";
+        document.getElementById("modalHba").innerText = row.hbond_acceptors !== undefined ? row.hbond_acceptors : "-";
+        document.getElementById("modalTpsa").innerText = row.tpsa ? `${row.tpsa} Å²` : "-";
+        document.getElementById("modalRotBonds").innerText = row.rotatable_bonds !== undefined ? row.rotatable_bonds : "-";
+        document.getElementById("modalLogS").innerText = row.logs !== undefined ? `${row.logs} [${row.solubility_profile || 'Unclassed'}]` : "-";
+        document.getElementById("modalSAScore").innerText = row.sa_score !== undefined ? `${row.sa_score} / 10.0` : "-";
+        document.getElementById("modalLipinski").innerText = row.lipinski_violations !== undefined ? `${row.lipinski_violations} Violations (Passes: ${row.passes_lipinski})` : "-";
+        document.getElementById("modalVeber").innerText = row.passes_veber === "Yes" ? "Passes Constraints" : "Violates Geometry Limits";
+        document.getElementById("modalBioActivity").innerText = row.primary_biological_focus || "No Documented Focus Tracked";
+
+        const linksBox = document.getElementById("modalPublications");
+        let linksHTML = "";
+        Object.keys(row).forEach(key => {
+            if (key.startsWith("clickable_reference_") && row[key]) {
+                const pmid = row[key].match(/\[PMID:\s*(\d+)\]/);
+                const url = row[key].match(/\((https:\/\/[^\)]+)\)/);
+                if (pmid && url) {
+                    linksHTML += `<a href="${url[1]}" target="_blank" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> PMID: ${pmid[1]}</a>`;
+                }
+            }
+        });
+        linksBox.innerHTML = linksHTML || `<span style="color:#64748b; font-style:italic;">No indexed literature references.</span>`;
+        document.getElementById("detailModalOverlay").classList.add("active");
+    }
+
+    document.getElementById("dbSearchInput").addEventListener("input", function(e) {
+        const query = e.target.value.toLowerCase().trim();
+        const filtered = databaseArray.filter(item => 
+            (item.name && item.name.toLowerCase().includes(query)) ||
+            (item.bio_id && item.bio_id.toLowerCase().includes(query)) ||
+            (item.mimi_id && item.mimi_id.toLowerCase().includes(query)) ||
+            (item.cas_number && item.cas_number.toLowerCase().includes(query)) ||
+            (item.primary_biological_focus && item.primary_biological_focus.toLowerCase().includes(query))
+        );
+        renderTable(filtered);
+    });
+
+    document.getElementById("closeModalBtn").addEventListener("click", () => document.getElementById("detailModalOverlay").classList.remove("active"));
+    document.getElementById("detailModalOverlay").addEventListener("click", (e) => { if(e.target.id === "detailModalOverlay") document.getElementById("detailModalOverlay").classList.remove("active"); });
+    window.addEventListener("DOMContentLoaded", loadData);
+</script>
+</body>
+</html>
