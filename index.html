@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biostat & BioDiscovery LLC - Expert Analytics & Biotools</title>
+    <title>Biostat &amp; BioDiscovery LLC - Expert Analytics &amp; Biotools</title>
     <script src="https://3dmol.org/build/3Dmol-min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -11,11 +11,15 @@
             --primary-dark: #030712;   /* Ultra-deep obsidian blue */
             --bg-panel-left: #050c1e;  /* Deep tech navy gradient backdrop */
             --bg-main: #ffffff;        /* Pure white background for content sections */
+            --panel-bg: #0f172a;       /* Slate charcoal backdrop for tools */
             --card-bg: #f8fafc;        /* Clean, professional light slate for cards */
             --accent-cyan: #0ea5e9;    /* Vibrant technology cyan */
-            --text-light: #f8fafc;     /* Light text inside dark headers */
+            --accent-emerald: #10b981; /* High-definition analytics green */
+            --accent-purple: #a855f7;  /* Descriptor/Power violet */
+            --text-light: #f8fafc;     /* Light text inside dark panels */
             --text-muted: #64748b;     /* Slate grey for secondary body text */
             --border-color: #cbd5e1;   /* Modern crisp layout dividers */
+            --tool-border: #334155;    /* Deep borders for standalone dashboards */
         }
 
         html {
@@ -59,9 +63,7 @@
             text-decoration: none;
         }
 
-        .logo span {
-            color: var(--accent-cyan);
-        }
+        .logo span { color: var(--accent-cyan); }
 
         nav ul {
             list-style: none;
@@ -80,9 +82,7 @@
             transition: color 0.2s ease;
         }
 
-        nav a:hover {
-            color: var(--accent-cyan);
-        }
+        nav a:hover { color: var(--accent-cyan); }
 
         .nav-db-btn {
             background-color: transparent;
@@ -101,7 +101,7 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
         }
 
-        /* --- HIGH-IMPACT SEAMLESS HERO BACKGROUND CONTAINER --- */
+        /* --- HIGH-IMPACT SEAMLESS HERO CONTAINER --- */
         .hero-fullscreen {
             height: 100vh;
             width: 100%;
@@ -115,7 +115,6 @@
             overflow: hidden;
         }
 
-        /* Left Panel: High-Contrast Kinetic Survival Graph Area */
         .survival-canvas-panel {
             position: absolute;
             top: 0;
@@ -137,7 +136,6 @@
             filter: drop-shadow(0 0 30px rgba(14, 165, 233, 0.4));
         }
 
-        /* Right Panel: Color-Matched 3D Structural Viewer Area */
         .docking-canvas-panel {
             position: absolute;
             top: 0;
@@ -148,7 +146,6 @@
             background-color: var(--primary-dark);
         }
 
-        /* Fixed Balanced Vignette Overlay Mask */
         .hero-fullscreen::before {
             content: '';
             position: absolute;
@@ -217,7 +214,7 @@
             box-shadow: 0 6px 25px rgba(14, 165, 233, 0.7);
         }
 
-        /* --- CONTENT SECTIONS --- */
+        /* --- CONTENT MODULE LAYOUTS --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -304,6 +301,199 @@
             line-height: 1.8;
         }
 
+        /* ========================================================
+        /* --- INTEGRATED CLINICAL AND COMPUTATIONAL BIOTOOLS ----- 
+        /* ======================================================== */
+        .tools-section-bg {
+            background-color: var(--primary-dark);
+            color: #ffffff;
+            border-bottom: 1px solid var(--tool-border);
+        }
+
+        /* Top-Level Selector for Separate Tool Suites */
+        .suite-mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .suite-toggle-btn {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--tool-border);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .suite-toggle-btn:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+        }
+
+        #btnSuiteSampleSize.active {
+            background-color: rgba(16, 185, 129, 0.15);
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+        }
+
+        #btnSuiteCompounds.active {
+            background-color: rgba(14, 165, 233, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.25);
+        }
+
+        .suite-window-view {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .suite-window-view.active {
+            display: block;
+        }
+
+        /* Side-by-Side Framework for Sample Size & Power */
+        .side-by-side-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1100px) {
+            .side-by-side-layout { grid-template-columns: 1fr; }
+        }
+
+        .studio-panel-wrapper {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--tool-border);
+            border-radius: 16px;
+            padding: 3rem 2.25rem 2.25rem 2.25rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .panel-branding-strip {
+            position: absolute;
+            top: 1.25rem;
+            left: 2.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+        }
+        .panel-branding-strip span { color: var(--accent-cyan); }
+
+        .panel-title-area {
+            margin-bottom: 1.75rem;
+            border-bottom: 1px solid var(--tool-border);
+            padding-bottom: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .panel-title-area h3 { margin: 0; font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+
+        /* Sub-navigation Menu Bars */
+        .studio-nav-tabs, .molarity-mode-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--tool-border);
+            padding-bottom: 1.25rem;
+        }
+
+        .tool-tab-btn {
+            background-color: rgba(3, 7, 18, 0.5);
+            border: 1px solid var(--tool-border);
+            color: var(--text-muted);
+            padding: 0.8rem 0.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+        .tool-tab-btn:hover { border-color: var(--accent-cyan); color: #ffffff; }
+
+        /* Left Sample Size Panel Tab Activations */
+        .panel-left .nav-tab.active {
+            background-color: rgba(14, 165, 233, 0.12);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Right Power Analysis Panel Tab Activations */
+        .panel-right .nav-tab.active {
+            background-color: rgba(168, 85, 247, 0.12);
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        /* Compound Solutions Tab Activations */
+        .compounds-workspace .tool-tab-btn.active {
+            background-color: rgba(14, 165, 233, 0.12);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .molarity-mode-selector .tool-tab-btn.active {
+            background-color: rgba(16, 185, 129, 0.12);
+            border-color: var(--accent-emerald);
+            color: var(--accent-emerald);
+        }
+
+        /* Forms Layout Fields */
+        .tool-window-view { display: none; }
+        .tool-window-view.active { display: block; }
+
+        .tool-grid-inputs { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2rem; }
+        .tool-grid-inputs.split-2 { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 500px) { .tool-grid-inputs.split-2 { grid-template-columns: 1fr; } }
+
+        .tool-row-input { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: end; }
+
+        .tool-input-group { display: flex; flex-direction: column; }
+        .tool-input-group label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .tool-input-group input, .tool-input-group select {
+            width: 100%; padding: 0.85rem; background-color: var(--primary-dark); border: 1px solid var(--tool-border); border-radius: 8px; color: #ffffff; font-size: 1.05rem; box-sizing: border-box; transition: all 0.2s ease;
+        }
+        .tool-input-group input:focus, .tool-input-group select:focus { outline: none; border-color: var(--accent-cyan); box-shadow: 0 0 10px rgba(14, 165, 233, 0.2); }
+        .tool-input-group input.code-mono { font-family: monospace; letter-spacing: 0.05em; }
+
+        /* Parameters Metrics Displays */
+        .tool-stats-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+        .tool-metric-box { background-color: rgba(3, 7, 18, 0.4); border: 1px solid var(--tool-border); border-radius: 8px; padding: 1rem; text-align: center; }
+        .tool-metric-value { font-size: 1.35rem; font-weight: 700; color: #ffffff; }
+        .tool-metric-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-top: 0.2rem; }
+
+        /* Dynamic Result Blocks */
+        .tool-result-panel {
+            background: linear-gradient(135deg, rgba(3, 7, 18, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid var(--tool-border); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden;
+        }
+        .tool-result-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--accent-cyan); }
+        .tool-result-panel.emerald::before { background-color: var(--accent-emerald); }
+        .tool-result-panel.purple::before { background-color: var(--accent-purple); }
+
+        .tool-result-value { font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.3rem; }
+        .tool-result-panel.cyan .tool-result-value { color: var(--accent-cyan); }
+        .tool-result-panel.emerald .tool-result-value { color: var(--accent-emerald); }
+        .tool-result-panel.purple .tool-result-value { color: var(--accent-purple); }
+        .tool-result-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .tool-split-result { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; }
+        .tool-split-result.single { grid-template-columns: 1fr; }
+        @media (max-width: 500px) { .tool-split-result { grid-template-columns: 1fr; text-align: center; } }
+
         /* --- Secure Contact Architecture --- */
         .contact-form {
             max-width: 600px;
@@ -315,62 +505,19 @@
             box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.3);
         }
 
-        .form-group {
-            margin-bottom: 1.75rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: #f8fafc;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-            font-size: 0.95rem;
-        }
-
+        .form-group { margin-bottom: 1.75rem; }
+        .form-group label { display: block; color: #f8fafc; font-weight: 600; margin-bottom: 0.6rem; font-size: 0.95rem; }
         .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.85rem;
-            border: 1px solid #1e293b;
-            background-color: var(--primary-dark);
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            box-sizing: border-box;
-            transition: border-color 0.2s ease;
+            width: 100%; padding: 0.85rem; border: 1px solid #1e293b; background-color: var(--primary-dark); border-radius: 8px; color: white; font-size: 1rem; box-sizing: border-box; transition: border-color 0.2s ease;
         }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
-        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent-cyan); }
 
         .submit-btn {
-            background-color: var(--accent-cyan);
-            color: white;
-            border: none;
-            padding: 0.9rem 2rem;
-            font-size: 1.05rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+            background-color: var(--accent-cyan); color: white; border: none; padding: 0.9rem 2rem; font-size: 1.05rem; font-weight: 700; border-radius: 8px; cursor: pointer; width: 100%; transition: background-color 0.2s ease, transform 0.1s ease; box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
         }
+        .submit-btn:hover { background-color: #0284c7; }
 
-        .submit-btn:hover {
-            background-color: #0284c7;
-        }
-
-        /* --- Global Footer --- */
-        footer {
-            background-color: var(--primary-dark);
-            color: #64748b;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            font-size: 0.9rem;
-            border-top: 1px solid #1e293b;
-        }
+        footer { background-color: var(--primary-dark); color: #64748b; text-align: center; padding: 2.5rem 1.5rem; font-size: 0.9rem; border-top: 1px solid #1e293b; }
     </style>
 </head>
 <body>
@@ -379,9 +526,9 @@
         <a href="#" class="logo">Biostat &amp; <span>BioDiscovery LLC</span></a>
         <nav>
             <ul>
-                <li><a href="#biostat">Biostatistics</a></li>
-                <li><a href="#biodiscovery">BioDiscovery</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#biostat-biodiscovery">Biostat and Biodiscovery</a></li>
+                <li><a href="#biotools">BioTools</a></li> 
+                <li><a href="#about">About us</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="database.html" target="_blank" class="nav-db-btn">DL-HMMD Portal</a></li>
             </ul>
@@ -389,24 +536,22 @@
     </header>
 
     <section class="hero-fullscreen">
-        
         <div class="survival-canvas-panel">
             <canvas id="liveSurvivalChart"></canvas>
         </div>
-
         <div id="heroDockingViewer" class="docking-canvas-panel"></div>
 
         <div class="hero-content">
-            <h1 class="hero-title">The advanced data and <br><span>discovery partner of choice.</span></h1>
-            <p class="hero-subtitle">Deploying institutional-grade biostatistical modeling frameworks alongside advanced computational biotools to accelerate molecular design targets.</p>
-            <a href="#biostat" class="hero-btn">Our services</a>
+            <h1 class="hero-title">The translational data partner <br><span>from bench to bedside.</span></h1>
+            <p class="hero-subtitle">Synchronizing molecular discovery metrics with high-performance longitudinal modeling to accelerate clinical milestones.</p>
+            <a href="#biostat-biodiscovery" class="hero-btn">Our Services</a> 
         </div>
     </section>
 
-    <section class="container" id="biostat">
+    <!-- UNIFIED SERVICES GRID SECTION -->
+    <section class="container" id="biostat-biodiscovery">
         <div class="section-header">
-            <h2>📊 Biostatistics &amp; Data Analytics</h2>
-            <p>Providing robust mathematical infrastructure to convert clinical variables and complex cohorts into compliant, publication-ready statistical documentation.</p>
+            <h2>📊 Biostatistics &amp; Biodiscovery Services</h2>
         </div>
         <div class="services-grid">
             <div class="service-card">
@@ -434,30 +579,226 @@
                 <h3>Meta-Analysis</h3>
                 <p>Aggregating and harmonizing global cross-study datasets to output definitive high-powered scientific reviews.</p>
             </div>
+            <div class="service-card">
+                <div class="card-icon">💻</div>
+                <h3>In Silico Molecular Docking &amp; Biotools</h3>
+                <p>Advanced structure-based computer screening, and ligand-protein binding affinity simulations.</p>
+            </div>
         </div>
     </section>
 
-    <section class="container" id="biodiscovery" style="border-top: 1px solid #e2e8f0;">
-        <div class="section-header">
-            <h2>🧬 BioDiscovery &amp; Biotools</h2>
-            <p>Bridging molecular informatics with structural modeling to drive modern preclinical development targets.</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="card-icon">💻</div>
-                <h3>In Silico Molecular Docking</h3>
-                <p>Advanced structure-based computer screening, spatial layout modeling, and ligand-protein binding affinity simulations.</p>
+    <!-- ====================================================================================== -->
+    <!-- INTERACTIVE ADVANCED BIOTOOLS SECTION                                                   -->
+    <!-- ====================================================================================== -->
+    <section class="tools-section-bg" id="biotools">
+        <div class="container">
+            <!-- REFINED COMPACT SECTION HEADER -->
+            <div class="section-header">
+                <h2 style="color: #ffffff; margin-bottom: 0;">BioTools</h2>
             </div>
-            <div class="service-card">
-                <div class="card-icon">📊</div>
-                <h3>BioPlots Visualizations</h3>
-                <p>Interactive, publication-ready graphic dashboards and automated plot script pipelines engineered using advanced code tools.</p>
+
+            <!-- TWO SEPARATE CLICKABLE SELECTION CONTROLS -->
+            <div class="suite-mode-selector">
+                <button id="btnSuiteSampleSize" class="suite-toggle-btn active" onclick="activateSuite('sample-size')">Sample size and Power Tool</button>
+                <button id="btnSuiteCompounds" class="suite-toggle-btn" onclick="activateSuite('compounds')">Compound Solutions</button>
             </div>
-            <div class="service-card">
-                <div class="card-icon">🗄️</div>
-                <h3>DL-HMMD Asset Portal</h3>
-                <p>Target mapping tools leveraging custom structured human microbial metabolite data. Access records via the top portal navigation button.</p>
+
+            <!-- ------------------------------------------------------------ -->
+            <!-- SUITE OPTION 1: SAMPLE SIZE AND POWER SIDE-BY-SIDE PLATFORM -->
+            <!-- ------------------------------------------------------------ -->
+            <div id="viewSuiteSampleSize" class="suite-window-view active">
+                <div class="side-by-side-layout">
+                    
+                    <!-- Left Column: Sample Size Estimation Framework -->
+                    <div class="studio-panel-wrapper panel-left">
+                        <div class="panel-branding-strip">Biostat &amp; <span>BioDiscovery LLC</span></div>
+                        <div class="panel-title-area"><h3>Sample Size Calculator</h3></div>
+                        
+                        <div class="studio-nav-tabs">
+                            <div id="tabL-IndT" class="tool-tab-btn active" onclick="setLeftFramework('indT')">Independent t</div>
+                            <div id="tabL-PairedT" class="tool-tab-btn" onclick="setLeftFramework('pairedT')">Paired t</div>
+                            <div id="tabL-Chi" class="tool-tab-btn" onclick="setLeftFramework('chi')">Chi-Square</div>
+                        </div>
+
+                        <div class="tool-grid-inputs">
+                            <div class="tool-input-group">
+                                <label id="lblLeftEffect">Effect Size (Cohen's d)</label>
+                                <input type="number" id="inputLeftEffect" value="0.50" step="0.01" min="0.01" oninput="runSampleSizeEngine()">
+                            </div>
+                            <div class="tool-input-group">
+                                <label for="inputLeftAlpha">Alpha (&alpha; Error)</label>
+                                <input type="number" id="inputLeftAlpha" value="0.05" step="0.001" min="0.001" max="0.5" oninput="runSampleSizeEngine()">
+                            </div>
+                            <div class="tool-input-group">
+                                <label for="inputLeftPower">Power (1 - &beta;)</label>
+                                <input type="number" id="inputLeftPower" value="0.80" step="0.01" min="0.05" max="0.99" oninput="runSampleSizeEngine()">
+                            </div>
+                            <div class="tool-input-group" id="blockLeftContext">
+                                <label id="lblLeftContext">Allocation (N2/N1)</label>
+                                <input type="number" id="inputLeftContext" value="1" step="0.1" min="0.1" oninput="runSampleSizeEngine()">
+                            </div>
+                        </div>
+
+                        <div class="tool-result-panel emerald">
+                            <div class="tool-split-result">
+                                <div class="output-block">
+                                    <div id="readoutLeftTotalN" class="tool-result-value">128</div>
+                                    <div class="tool-result-label">Total Sample (N)</div>
+                                </div>
+                                <div class="output-block" style="border-left: 1px solid var(--tool-border); padding-left: 1.25rem;" id="blockLeftSplits">
+                                    <div id="readoutLeftSplits" class="tool-result-value" style="font-size: 1.5rem; color: #ffffff; padding-top: 0.3rem;">64 / 64 splits</div>
+                                    <div class="tool-result-label">Group Allocation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Dedicated Power Analysis Framework -->
+                    <div class="studio-panel-wrapper panel-right">
+                        <div class="panel-branding-strip">Biostat &amp; <span>BioDiscovery LLC</span></div>
+                        <div class="panel-title-area"><h3>Power Analysis Tool</h3></div>
+                        
+                        <div class="studio-nav-tabs">
+                            <div id="tabR-IndT" class="tool-tab-btn active" onclick="setRightFramework('indT')">Independent t</div>
+                            <div id="tabR-PairedT" class="tool-tab-btn" onclick="setRightFramework('pairedT')">Paired t</div>
+                            <div id="tabR-Chi" class="tool-tab-btn" onclick="setRightFramework('chi')">Chi-Square</div>
+                        </div>
+
+                        <div class="tool-grid-inputs">
+                            <div class="tool-input-group">
+                                <label id="lblRightEffect">Effect Size (Cohen's d)</label>
+                                <input type="number" id="inputRightEffect" value="0.50" step="0.01" min="0.01" oninput="runPowerAnalysisEngine()">
+                            </div>
+                            <div class="tool-input-group">
+                                <label for="inputRightAlpha">Alpha (&alpha; Error)</label>
+                                <input type="number" id="inputRightAlpha" value="0.05" step="0.001" min="0.001" max="0.5" oninput="runPowerAnalysisEngine()">
+                            </div>
+                            <div class="tool-input-group">
+                                <label for="inputRightTotalN">Total Sample (N)</label>
+                                <input type="number" id="inputRightTotalN" value="128" step="1" min="4" oninput="runPowerAnalysisEngine()">
+                            </div>
+                            <div class="tool-input-group" id="blockRightContext">
+                                <label id="lblRightContext">Allocation (N2/N1)</label>
+                                <input type="number" id="inputRightContext" value="1" step="0.1" min="0.1" oninput="runPowerAnalysisEngine()">
+                            </div>
+                        </div>
+
+                        <div class="tool-result-panel purple">
+                            <div class="tool-split-result single">
+                                <div class="output-block">
+                                    <div id="readoutRightPower" class="tool-result-value">80.1%</div>
+                                    <div class="tool-result-label">Calculated Statistical Power (1 - &beta;)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+            <!-- ------------------------------------------------------------ -->
+            <!-- SUITE OPTION 2: INTEGRATED COMPOUND SOLUTIONS PLATFORM       -->
+            <!-- ------------------------------------------------------------ -->
+            <div id="viewSuiteCompounds" class="suite-window-view compounds-workspace">
+                <div class="studio-panel-wrapper" style="max-width: 850px; margin: 0 auto;">
+                    <div class="panel-branding-strip">Biostat &amp; <span>BioDiscovery LLC</span></div>
+                    <div class="panel-title-area"><h3>Compound Solutions</h3></div>
+                    
+                    <div class="studio-nav-tabs">
+                        <div id="tabC-Molarity" class="tool-tab-btn active" onclick="switchCompoundsSuite('molarity')">Molarity Calculator</div>
+                        <div id="tabC-Solubility" class="tool-tab-btn" onclick="switchCompoundsSuite('solubility')">Solubility Predictor</div>
+                        <div id="tabC-Physchem" class="tool-tab-btn" onclick="switchCompoundsSuite('physchem')">Physiochemical Predictor</div>
+                    </div>
+
+                    <!-- Inner Module A: Molarity Calculator -->
+                    <div id="winC-Molarity" class="tool-window-view active">
+                        <div class="molarity-mode-selector">
+                            <button class="tool-tab-btn active" id="btnM-Mass" onclick="setMolarityMode('mass')">Calculate Mass</button>
+                            <button class="tool-tab-btn" id="btnM-Conc" onclick="setMolarityMode('conc')">Calculate Concentration</button>
+                            <button class="tool-tab-btn" id="btnM-Vol" onclick="setMolarityMode('vol')">Calculate Volume</button>
+                        </div>
+                        <div class="tool-grid-inputs">
+                            <div class="tool-input-group">
+                                <label for="mwInput">Molecular Weight (g/mol)</label>
+                                <input type="number" id="mwInput" value="180.16" step="0.001" min="0" oninput="runMolarityCalculation()">
+                            </div>
+                            <div class="tool-row-input">
+                                <div class="tool-input-group">
+                                    <label id="lblSlot1">Concentration</label>
+                                    <input type="number" id="valSlot1" value="250" step="any" oninput="runMolarityCalculation()">
+                                </div>
+                                <div class="tool-input-group"><select id="unitSlot1" onchange="runMolarityCalculation()"></select></div>
+                            </div>
+                            <div class="tool-row-input">
+                                <div class="tool-input-group">
+                                    <label id="lblSlot2">Volume</label>
+                                    <input type="number" id="valSlot2" value="500" step="any" oninput="runMolarityCalculation()">
+                                </div>
+                                <div class="tool-input-group"><select id="unitSlot2" onchange="runMolarityCalculation()"></select></div>
+                            </div>
+                        </div>
+                        <div class="tool-result-panel emerald">
+                            <div id="molarityDisplay" class="tool-result-value">22.520 g</div>
+                            <div id="molarityLabel" class="tool-result-label">Required Compound Mass</div>
+                        </div>
+                    </div>
+
+                    <!-- Inner Module B: Solubility Predictor -->
+                    <div id="winC-Solubility" class="tool-window-view">
+                        <div class="tool-grid-inputs">
+                            <div class="tool-input-group">
+                                <label for="smilesInput">SMILES Notation String</label>
+                                <input type="text" id="smilesInput" class="code-mono" value="CC(=O)NC1=CC=C(O)C=C1">
+                                <div id="smilesError" class="error-banner"></div>
+                            </div>
+                        </div>
+                        <div class="tool-stats-metrics">
+                            <div class="tool-metric-box"><div id="solMwDisplay" class="tool-metric-value">151.16</div><div class="tool-metric-label">Mol. Weight</div></div>
+                            <div class="tool-metric-box"><div id="solLogpDisplay" class="tool-metric-value">0.46</div><div class="tool-metric-label">Estimated cLogP</div></div>
+                            <div class="tool-metric-box"><div id="solMpDisplay" class="tool-metric-value">168.5</div><div class="tool-metric-label">Est. Melting Pt</div></div>
+                        </div>
+                        <div class="tool-result-panel cyan">
+                            <div class="tool-split-result">
+                                <div class="output-block">
+                                    <div id="logsDisplay" class="tool-result-value">-1.58</div>
+                                    <div class="tool-result-label">Intrinsic Solubility (logS)</div>
+                                </div>
+                                <div class="output-block" style="align-items: flex-start; justify-content: center;">
+                                    <div id="solGgDisplay" class="tool-result-value" style="font-size: 1.8rem; color: #ffffff;">3.94 g/L</div>
+                                    <div id="classBadge" class="classification-badge">Soluble</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inner Module C: Physicochemical Predictor -->
+                    <div id="winC-Physchem" class="tool-window-view">
+                        <div class="tool-grid-inputs">
+                            <div class="tool-input-group">
+                                <label for="physchemSmilesInput">Target SMILES Sequence</label>
+                                <input type="text" id="physchemSmilesInput" class="code-mono" value="CC(=O)NC1=CC=C(O)C=C1">
+                                <div id="physchemError" class="error-banner"></div>
+                            </div>
+                        </div>
+                        <div class="tool-stats-metrics">
+                            <div class="tool-metric-box"><div id="pcMwDisplay" class="tool-metric-value">151.16</div><div class="tool-metric-label">Mol. Weight</div></div>
+                            <div class="tool-metric-box"><div id="pcLogpDisplay" class="tool-metric-value">0.46</div><div class="tool-metric-label">logP Value</div></div>
+                            <div class="tool-metric-box"><div id="pcRbDisplay" class="tool-metric-value">1</div><div class="tool-metric-label">Flexibility</div></div>
+                        </div>
+                        <div class="tool-stats-metrics" style="margin-bottom: 2rem;">
+                            <div class="tool-metric-box"><div id="pchbdDisplay" class="tool-metric-value">2</div><div class="tool-metric-label">Donors</div></div>
+                            <div class="tool-metric-box"><div id="pchbaDisplay" class="tool-metric-value">2</div><div class="tool-metric-label">Acceptors</div></div>
+                            <div class="tool-metric-box"><div id="pctpsaDisplay" class="tool-metric-value">49.3 Å²</div><div class="tool-metric-label">tPSA</div></div>
+                        </div>
+                        <div class="tool-result-panel purple">
+                            <div id="druglikenessDisplay" class="tool-result-value">92.4%</div>
+                            <div class="tool-result-label">Computed Druglikeness Probability Profile Score</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -481,7 +822,6 @@
                     <label for="name">Full Name / Primary Investigator</label>
                     <input type="text" id="name" name="name" required placeholder="Dr. Jane Doe">
                 </div>
-                <!-- SIMPLIFIED EMAIL LABEL -->
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required placeholder="j.doe@institution.com">
@@ -503,92 +843,310 @@
         <p>&copy; 2026 Biostat &amp; BioDiscovery LLC. All rights reserved. Professional consulting services.</p>
     </footer>
 
+    <!-- LOGICAL PIPELINE COMPUTATION ARRAY -->
     <script>
+        let leftFramework = 'indT';
+        let rightFramework = 'indT';
+
+        const frameworkMetadata = {
+            indT: { effectLabel: "Effect Size (Cohen's d)", defaultEffect: "0.50", contextLabel: "Allocation (N2/N1)", defaultContext: "1" },
+            pairedT: { effectLabel: "Effect Size (Cohen's d)", defaultEffect: "0.50", contextLabel: "Tails", defaultContext: "2" },
+            chi: { effectLabel: "Effect Size (Cohen's w)", defaultEffect: "0.30", contextLabel: "Degrees of Freedom (df)", defaultContext: "1" }
+        };
+
         document.addEventListener("DOMContentLoaded", function() {
             // ===============================================
-            // DEPLOY RIGHT PANEL: VIBRANT GLOWING MOLECULE
+            // WEBGL 3D INTERACTIVE HERO VIEWER CONFIG
             // ===============================================
             let element = document.getElementById("heroDockingViewer");
             let viewer = $3Dmol.createViewer(element, { defaultcolors: $3Dmol.rasmolElementColors });
-            
             viewer.setBackgroundColor(0x030712);
-
-            // Fetching a highly vibrant, high-definition model complex
             $3Dmol.download("pdb:1A4W", viewer, {}, function() {
                 viewer.setStyle({}, {cartoon: {color: 'cyan', opacity: 0.85, tubes: true, radius: 0.25}});
                 viewer.setStyle({within:{distance: 6, sel:{resn:'SIT'}}}, {stick:{colorscheme:'yellowCarbon', radius:0.35}});
-                viewer.zoomTo();
-                viewer.render();
-                viewer.spin(true, 0.12);
+                viewer.zoomTo(); viewer.render(); viewer.spin(true, 0.12);
             });
 
             // ==========================================
-            // DEPLOY LEFT PANEL: VIBRANT SURVIVAL DATA
+            // TRANSLATIONAL GRADIENT SURVIVAL CANVASES
             // ==========================================
-            const ctx = document.getElementById('liveSurvivalChart').getContext('2d');
-            
+            const sCtx = document.getElementById('liveSurvivalChart').getContext('2d');
             let baselineData = [100, 100, 94, 94, 87, 83, 83, 74, 68, 68, 55, 50, 50];
-            let intervals = Array.from({length: baselineData.length}, (_, i) => `T-${i * 4}`);
-
-            const chartGradient = ctx.createLinearGradient(0, 0, 0, 450);
-            chartGradient.addColorStop(0, 'rgba(14, 165, 233, 0.4)');
-            chartGradient.addColorStop(1, 'rgba(3, 7, 18, 0.0)');
-
-            const liveSurvivalChart = new Chart(ctx, {
+            const sGrad = sCtx.createLinearGradient(0, 0, 0, 450);
+            sGrad.addColorStop(0, 'rgba(14, 165, 233, 0.4)'); sGrad.addColorStop(1, 'rgba(3, 7, 18, 0.0)');
+            
+            const liveChart = new Chart(sCtx, {
                 type: 'line',
                 data: {
-                    labels: intervals,
-                    datasets: [{
-                        data: baselineData,
-                        borderColor: '#38bdf8',
-                        borderWidth: 4.5,
-                        stepped: true,
-                        backgroundColor: chartGradient,
-                        fill: true,
-                        pointBackgroundColor: '#0ea5e9',
-                        pointBorderColor: '#ffffff',
-                        pointBorderWidth: 2,
-                        pointRadius: 4.5,
-                        pointHoverRadius: 8,
-                        tension: 0
-                    }]
+                    labels: Array.from({length: baselineData.length}, (_, i) => `T-${i * 4}`),
+                    datasets: [{ data: baselineData, borderColor: '#38bdf8', borderWidth: 4.5, stepped: true, backgroundColor: sGrad, fill: true, pointBackgroundColor: '#0ea5e9', pointBorderColor: '#ffffff', pointBorderWidth: 2, pointRadius: 4.5, tension: 0 }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { 
-                            grid: { color: 'rgba(255, 255, 255, 0.04)' }, 
-                            ticks: { color: '#94a3b8', font: { size: 10, weight: '600' } } 
-                        },
-                        y: {
-                            min: 0,
-                            max: 100,
-                            grid: { color: 'rgba(14, 165, 233, 0.18)' },
-                            ticks: {
-                                color: '#ffffff',
-                                font: { size: 12, weight: '800' },
-                                callback: function(value) { return value + '%'; }
-                            }
-                        }
-                    },
-                    animation: { duration: 400, easing: 'linear' }
-                }
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(255, 255, 255, 0.04)' }, ticks: { color: '#94a3b8', font: { size: 10 } } }, y: { min: 0, max: 100, grid: { color: 'rgba(14, 165, 233, 0.18)' }, ticks: { color: '#ffffff', font: { weight: '800' }, callback: function(v) { return v + '%'; } } } } }
             });
 
             setInterval(() => {
-                for(let i = 2; i < liveSurvivalChart.data.datasets[0].data.length; i++) {
-                    let randomShift = (Math.random() - 0.5) * 1.5;
-                    let currentVal = liveSurvivalChart.data.datasets[0].data[i] + randomShift;
-                    
-                    if(currentVal <= liveSurvivalChart.data.datasets[0].data[i-1] && currentVal > 5) {
-                        liveSurvivalChart.data.datasets[0].data[i] = parseFloat(currentVal.toFixed(1));
-                    }
+                for(let i = 2; i < liveChart.data.datasets[0].data.length; i++) {
+                    let shift = (Math.random() - 0.5) * 1.5; let val = liveChart.data.datasets[0].data[i] + shift;
+                    if(val <= liveChart.data.datasets[0].data[i-1] && val > 5) liveChart.data.datasets[0].data[i] = parseFloat(val.toFixed(1));
                 }
-                liveSurvivalChart.update('none'); 
+                liveChart.update('none');
             }, 2500);
+
+            // Initialize App Modules
+            setMolarityMode('mass');
+            runSampleSizeEngine();
+            runPowerAnalysisEngine();
+            
+            document.getElementById('smilesInput').addEventListener('input', function() { document.getElementById('physchemSmilesInput').value = this.value; runSolubilityPrediction(); });
+            document.getElementById('physchemSmilesInput').addEventListener('input', function() { document.getElementById('smilesInput').value = this.value; runPhysicochemicalPrediction(); });
         });
+
+        // ========================================================
+        // CORE WORKSPACE WORKFLOW ROUTING CONTROLLER
+        // ========================================================
+        function activateSuite(suite) {
+            document.getElementById('btnSuiteSampleSize').classList.remove('active');
+            document.getElementById('btnSuiteCompounds').classList.remove('active');
+            document.getElementById('viewSuiteSampleSize').classList.remove('active');
+            document.getElementById('viewSuiteCompounds').classList.remove('active');
+
+            if (suite === 'sample-size') {
+                document.getElementById('btnSuiteSampleSize').classList.add('active');
+                document.getElementById('viewSuiteSampleSize').classList.add('active');
+                runSampleSizeEngine();
+                runPowerAnalysisEngine();
+            } else {
+                document.getElementById('btnSuiteCompounds').classList.add('active');
+                document.getElementById('viewSuiteCompounds').classList.add('active');
+                runMolarityCalculation();
+            }
+        }
+
+        // ========================================================
+        // PIPELINE A: SAMPLE SIZE & POWER ENGINES
+        // ========================================================
+        function setLeftFramework(framework) {
+            leftFramework = framework;
+            document.querySelectorAll('.panel-left .tool-tab-btn').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tabL-${framework.charAt(0).toUpperCase() + framework.slice(1)}`).classList.add('active');
+
+            const meta = frameworkMetadata[framework];
+            document.getElementById('lblLeftEffect').innerText = meta.effectLabel;
+            document.getElementById('inputLeftEffect').value = meta.defaultEffect;
+            document.getElementById('lblLeftContext').innerText = meta.contextLabel;
+            
+            const contextInput = document.getElementById('inputLeftContext');
+            if (framework === 'pairedT') {
+                contextInput.outerHTML = '<select id="inputLeftContext" onchange="runSampleSizeEngine()"><option value="2">Two-tailed</option><option value="1">One-tailed</option></select>';
+                document.getElementById('blockLeftSplits').style.display = 'none';
+            } else if (framework === 'chi') {
+                contextInput.outerHTML = '<input type="number" id="inputLeftContext" value="1" min="1" step="1" oninput="runSampleSizeEngine()">';
+                document.getElementById('blockLeftSplits').style.display = 'none';
+            } else {
+                contextInput.outerHTML = '<input type="number" id="inputLeftContext" value="1" min="0.1" step="0.1" oninput="runSampleSizeEngine()">';
+                document.getElementById('blockLeftSplits').style.display = 'block';
+            }
+            runSampleSizeEngine();
+        }
+
+        function setRightFramework(framework) {
+            rightFramework = framework;
+            document.querySelectorAll('.panel-right .tool-tab-btn').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tabR-${framework.charAt(0).toUpperCase() + framework.slice(1)}`).classList.add('active');
+
+            const meta = frameworkMetadata[framework];
+            document.getElementById('lblRightEffect').innerText = meta.effectLabel;
+            document.getElementById('inputRightEffect').value = meta.defaultEffect;
+            document.getElementById('lblRightContext').innerText = meta.contextLabel;
+            
+            const contextInput = document.getElementById('inputRightContext');
+            if (framework === 'pairedT') {
+                contextInput.outerHTML = '<select id="inputRightContext" onchange="runPowerAnalysisEngine()"><option value="2">Two-tailed</option><option value="1">One-tailed</option></select>';
+            } else if (framework === 'chi') {
+                contextInput.outerHTML = '<input type="number" id="inputRightContext" value="1" min="1" step="1" oninput="runPowerAnalysisEngine()">';
+            } else {
+                contextInput.outerHTML = '<input type="number" id="inputRightContext" value="1" min="0.1" step="0.1" oninput="runPowerAnalysisEngine()">';
+            }
+            runPowerAnalysisEngine();
+        }
+
+        // Analytical Distributions Proxies
+        function p2z(p) {
+            const c0 = 2.515517, c1 = 0.802853, c2 = 0.010328, d1 = 1.432788, d2 = 0.189269, d3 = 0.001308;
+            let t = Math.sqrt(-2.0 * Math.log(p)); return t - ((c0 + c1*t + c2*t*t) / (1.0 + d1*t + d2*t*t + d3*t*t*t));
+        }
+        function z2p(z) {
+            let t = 1.0 / (1.0 + 0.2316419 * Math.abs(z)), d = 0.3989423 * Math.exp(-z * z / 2.0);
+            let p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+            return z >= 0 ? 1.0 - p : p;
+        }
+        function getChiSquareCritical(alpha, df) {
+            let z = p2z(alpha), v = 2 / (9 * df); return df * Math.pow(1 - v + z * Math.sqrt(v), 3);
+        }
+
+        function runSampleSizeEngine() {
+            const es = parseFloat(document.getElementById('inputLeftEffect').value) || 0.1;
+            const alpha = parseFloat(document.getElementById('inputLeftAlpha').value) || 0.05;
+            const power = parseFloat(document.getElementById('inputLeftPower').value) || 0.80;
+            const contextVal = parseFloat(document.getElementById('inputLeftContext').value) || 1;
+
+            if (es <= 0) return;
+            let zAlpha = p2z(alpha / 2); let zBeta = p2z(1 - power); let totalN = 0;
+
+            if (leftFramework === 'indT') {
+                let kappa = contextVal; let factor = (1 + 1 / kappa);
+                let n1 = Math.ceil((factor * Math.pow(zAlpha + zBeta, 2)) / Math.pow(es, 2));
+                let n2 = Math.ceil(n1 * kappa); totalN = n1 + n2;
+                document.getElementById('readoutLeftTotalN').innerText = totalN;
+                document.getElementById('readoutLeftSplits').innerText = `${n1} / ${n2}`;
+            } else if (leftFramework === 'pairedT') {
+                let adjZ = p2z(alpha / contextVal);
+                totalN = Math.ceil(Math.pow(adjZ + zBeta, 2) / Math.pow(es, 2));
+                document.getElementById('readoutLeftTotalN').innerText = totalN;
+            } else {
+                let chiCrit = getChiSquareCritical(alpha, contextVal);
+                totalN = Math.ceil((chiCrit + Math.pow(zAlpha + zBeta, 2)) / Math.pow(es, 2));
+                document.getElementById('readoutLeftTotalN').innerText = totalN;
+            }
+        }
+
+        function runPowerAnalysisEngine() {
+            const es = parseFloat(document.getElementById('inputRightEffect').value) || 0.1;
+            const alpha = parseFloat(document.getElementById('inputRightAlpha').value) || 0.05;
+            const totalN = parseFloat(document.getElementById('inputRightTotalN').value) || 20;
+            const contextVal = parseFloat(document.getElementById('inputRightContext').value) || 1;
+
+            if (es <= 0 || totalN <= 4) return;
+            let computedPower = 0; let zAlpha = p2z(alpha / 2);
+
+            if (rightFramework === 'indT') {
+                let kappa = contextVal; let n1 = totalN / (1 + kappa); let n2 = totalN - n1;
+                let delta = es * Math.sqrt((n1 * n2) / (totalN));
+                computedPower = z2p(delta - zAlpha) + z2p(-delta - zAlpha);
+            } else if (rightFramework === 'pairedT') {
+                let delta = es * Math.sqrt(totalN); let zCrit = p2z(alpha / contextVal);
+                computedPower = z2p(delta - zCrit);
+            } else {
+                let chiCrit = getChiSquareCritical(alpha, contextVal);
+                computedPower = z2p(Math.sqrt(Math.pow(es, 2) * totalN) - Math.sqrt(chiCrit));
+            }
+            document.getElementById('readoutRightPower').innerText = `${Math.max(0.1, Math.min(99.9, computedPower * 100)).toFixed(1)}%`;
+        }
+
+        // ========================================================
+        // PIPELINE B: COMPOUND SOLUTIONS CONTEXT MODULES
+        // ========================================================
+        function switchCompoundsSuite(tool) {
+            document.querySelectorAll('.compounds-workspace .tool-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#winC-Molarity, #winC-Solubility, #winC-Physchem').forEach(w => w.classList.remove('active'));
+            
+            if (tool === 'molarity') { document.getElementById('tabC-Molarity').classList.add('active'); document.getElementById('winC-Molarity').classList.add('active'); runMolarityCalculation(); }
+            else if (tool === 'solubility') { document.getElementById('tabC-Solubility').classList.add('active'); document.getElementById('winC-Solubility').classList.add('active'); runSolubilityPrediction(); }
+            else { document.getElementById('tabC-Physchem').classList.add('active'); document.getElementById('winC-Physchem').classList.add('active'); runPhysicochemicalPrediction(); }
+        }
+
+        let currentMolarityMode = 'mass';
+        const molarityConfigs = {
+            mass: { l1: "Concentration", u1: [{t: "M", v: 1}, {t: "mM", v: 1e-3, s: true}, {t: "µM", v: 1e-6}], l2: "Volume", u2: [{t: "L", v: 1}, {t: "mL", v: 1e-3, s: true}, {t: "µL", v: 1e-6}], target: "Required Compound Mass" },
+            conc: { l1: "Mass", u1: [{t: "g", v: 1, s: true}, {t: "mg", v: 1e-3}, {t: "µg", v: 1e-6}], l2: "Volume", u2: [{t: "L", v: 1}, {t: "mL", v: 1e-3, s: true}, {t: "µL", v: 1e-6}], target: "Calculated Concentration" },
+            vol: { l1: "Mass", u1: [{t: "g", v: 1, s: true}, {t: "mg", v: 1e-3}, {t: "µg", v: 1e-6}], l2: "Concentration", u2: [{t: "M", v: 1}, {t: "mM", v: 1e-3, s: true}, {t: "µM", v: 1e-6}], target: "Calculated Total Volume Required" }
+        };
+
+        function setMolarityMode(mode) {
+            currentMolarityMode = mode;
+            document.querySelectorAll('.molarity-mode-selector .tool-tab-btn').forEach(b => b.classList.remove('active'));
+            if(mode === 'mass') document.getElementById('btnM-Mass').classList.add('active');
+            if(mode === 'conc') document.getElementById('btnM-Conc').classList.add('active');
+            if(mode === 'vol') document.getElementById('btnM-Vol').classList.add('active');
+
+            const conf = molarityConfigs[mode];
+            document.getElementById('lblSlot1').innerText = conf.l1;
+            document.getElementById('lblSlot2').innerText = conf.l2;
+            document.getElementById('molarityLabel').innerText = conf.target;
+
+            buildSelectDropdown('unitSlot1', conf.u1); buildSelectDropdown('unitSlot2', conf.u2);
+            runMolarityCalculation();
+        }
+
+        function buildSelectDropdown(id, arr) {
+            const sel = document.getElementById(id); sel.innerHTML = '';
+            arr.forEach(u => { const o = document.createElement('option'); o.value = u.v; o.text = u.t; if(u.s) o.selected = true; sel.appendChild(o); });
+        }
+
+        function runMolarityCalculation() {
+            const mw = parseFloat(document.getElementById('mwInput').value) || 0;
+            const v1 = parseFloat(document.getElementById('valSlot1').value) || 0; const u1 = parseFloat(document.getElementById('unitSlot1').value) || 1;
+            const v2 = parseFloat(document.getElementById('valSlot2').value) || 0; const u2 = parseFloat(document.getElementById('unitSlot2').value) || 1;
+            const disp = document.getElementById('molarityDisplay');
+
+            if (mw <= 0 || v1 <= 0 || v2 <= 0) { disp.innerText = "--"; return; }
+            const b1 = v1 * u1; const b2 = v2 * u2;
+
+            if (currentMolarityMode === 'mass') {
+                const mass = b1 * b2 * mw;
+                disp.innerText = mass >= 1 ? `${mass.toFixed(3)} g` : mass >= 1e-3 ? `${(mass * 1e3).toFixed(3)} mg` : `${(mass * 1e6).toFixed(3)} µg`;
+            } else if (currentMolarityMode === 'conc') {
+                const molarity = b1 / (b2 * mw);
+                disp.innerText = molarity >= 1 ? `${molarity.toFixed(4)} M` : molarity >= 1e-3 ? `${(molarity * 1e3).toFixed(3)} mM` : `${(molarity * 1e6).toFixed(3)} µM`;
+            } else {
+                const volume = b1 / (b2 * mw);
+                disp.innerText = volume >= 1 ? `${volume.toFixed(3)} L` : volume >= 1e-3 ? `${(volume * 1e3).toFixed(2)} mL` : `${(volume * 1e6).toFixed(2)} µL`;
+            }
+        }
+
+        function runCalculatedPropertiesMatrix(smiles) {
+            let weight = 0; const clean = smiles.toUpperCase().replace(/[^A-Z]/g, '');
+            for (let i = 0; i < clean.length; i++) { if (atomicWeights[clean[i]]) weight += atomicWeights[clean[i]]; }
+            weight = weight > 0 ? weight + (weight * 0.08) : 151.16;
+
+            let cLogP = 0.4; let estMp = 30; let hbd = 0; let hba = 0; let tpsa = 15.5;
+            fragmentContributions.forEach(g => {
+                const m = smiles.match(g.regex);
+                if (m) { cLogP += (m.length * g.logp); estMp += (m.length * g.mp); hbd += (m.length * (g.hbd || 0)); hba += (m.length * (g.hba || 0)); tpsa += (m.length * (g.tpsa || 0)); }
+            });
+
+            const rBonds = smiles.match(/[A-Za-z0-9]-[A-Za-z0-9]/g);
+            let rb = rBonds ? Math.floor(rBonds.length / 2.5) : 1; if (rb < 0) rb = 0;
+            if (cLogP > 6) cLogP = 5.85; if (cLogP < -3) cLogP = -2.90;
+
+            return { weight, cLogP, estMp, hbd, hba, rb, tpsa };
+        }
+
+        function runSolubilityPrediction() {
+            const smiles = document.getElementById('smilesInput').value.trim();
+            if(!smiles.length) return;
+            
+            const m = runCalculatedPropertiesMatrix(smiles);
+            let logS = 0.5 - m.cLogP - 0.01 * (m.estMp - 25); const gL = Math.pow(10, logS) * m.weight;
+
+            document.getElementById('solMwDisplay').innerText = m.weight.toFixed(2);
+            document.getElementById('solLogpDisplay').innerText = m.cLogP.toFixed(2);
+            document.getElementById('solMpDisplay').innerText = m.estMp.toFixed(1);
+            document.getElementById('logsDisplay').innerText = logS.toFixed(2);
+            document.getElementById('solGgDisplay').innerText = gL >= 100 ? `${(gL / 1000).toFixed(2)} kg/L` : `${gL.toFixed(2)} g/L`;
+
+            const b = document.getElementById('classBadge');
+            if(logS > -1) { b.innerText = "Highly Soluble"; b.className = "classification-badge highly"; }
+            else if(logS > -4) { b.innerText = "Soluble"; b.className = "classification-badge"; }
+            else { b.innerText = "Poorly Soluble"; b.className = "classification-badge poorly"; }
+        }
+
+        function runPhysicochemicalPrediction() {
+            const smiles = document.getElementById('physchemSmilesInput').value.trim();
+            if(!smiles.length) return;
+
+            const m = runCalculatedPropertiesMatrix(smiles);
+            document.getElementById('pcMwDisplay').innerText = m.weight.toFixed(2);
+            document.getElementById('pcLogpDisplay').innerText = m.cLogP.toFixed(2);
+            document.getElementById('pcRbDisplay').innerText = m.rb;
+            document.getElementById('pchbdDisplay').innerText = m.hbd;
+            document.getElementById('pchbaDisplay').innerText = m.hba;
+            document.getElementById('pctpsaDisplay').innerText = `${m.tpsa.toFixed(1)} Å²`;
+
+            let score = 96.0 - (m.rb * 1.5) - (Math.abs(m.cLogP - 2.2) * 3.0);
+            if (m.weight > 500) score -= 15;
+            document.getElementById('druglikenessDisplay').innerText = `${Math.max(5.0, Math.min(100, score)).toFixed(1)}%`;
+        }
     </script>
 </body>
 </html>
